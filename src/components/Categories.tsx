@@ -18,7 +18,7 @@ const Categories = ({
   const [categories, setCategories] = useState<string[]>();
 
   useEffect(() => {
-    fetchData('https://dummyjson.com/products/categories', setCategories);
+    fetchData('https://dummyjson.com/products/categories').then(setCategories);
   }, []);
 
   return (

@@ -21,7 +21,7 @@ const ProductDetails = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    fetchData(`https://dummyjson.com/products/${productId}`, setProduct);
+    fetchData(`https://dummyjson.com/products/${productId}`).then(setProduct);
     setIsLoading(false);
   }, [productId]);
 
