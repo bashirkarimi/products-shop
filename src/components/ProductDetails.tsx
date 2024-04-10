@@ -27,14 +27,14 @@ const ProductDetails = () => {
 
   return (
     <div className="md:flex gap-10">
-      <div className="relative shrink-0 basis-3/5 flex gap-3">
-        <div className="relative order-2 basis-4/5">
+      <div className="relative shrink-0 basis-3/5 flex gap-6">
+        <div className="relative order-2 basis-4/5 border rounded h-fit">
           <img
             className="w-full aspect-[3/4] object-cover"
             src={product?.thumbnail}
           />
           {product?.discountPercentage && (
-            <div className="absolute top-1">
+            <div className="absolute right-0 top-0">
               <span className="px-2 py-1 bg-fuchsia-800 text-gray-50">
                 -{product.discountPercentage}%
               </span>
@@ -44,9 +44,12 @@ const ProductDetails = () => {
         <div className="mr-2 order-1 basis-1/5">
           {product?.images?.map((image) => (
             <img
-              className="w-full object-cover aspect-[3/4] mb-3"
+              className={`w-full object-cover aspect-[3/4] mb-3 border rounded hover:shadow-md hover:border-slate-800 cursor-pointer
+              ${image === product.thumbnail && ' border-slate-800'}
+              `}
               key={image}
               src={image}
+              onMouseEnter={() => setProduct({ ...product, thumbnail: image })}
             />
           ))}
         </div>
