@@ -27,8 +27,8 @@ const ProductDetails = () => {
 
   return (
     <div className="md:flex gap-10">
-      <div className="relative shrink-0 basis-3/5 flex gap-6">
-        <div className="relative order-2 basis-4/5 border rounded h-fit">
+      <div className="flex items-start relative shrink-0 basis-3/5 gap-6">
+        <div className="relative order-2 basis-4/5 border rounded flex-grow-0 ml-auto">
           <img
             className="w-full aspect-[3/4] object-cover"
             src={product?.thumbnail}
@@ -41,21 +41,23 @@ const ProductDetails = () => {
             </div>
           )}
         </div>
-        <div className="mr-2 order-1 basis-1/5">
-          {product?.images?.map((image) => (
-            <img
-              className={`w-full object-cover aspect-[3/4] mb-3 border rounded hover:shadow-md hover:border-slate-800 cursor-pointer
-              ${image === product.thumbnail && ' border-slate-800'}
-              `}
-              key={image}
-              src={image}
-              onMouseEnter={() => setProduct({ ...product, thumbnail: image })}
-            />
-          ))}
+        <div className="relative h-full mr-2 order-1 basis-1/5 overflow-auto">
+          <div className='absolute w-full h-full'>
+            {product?.images?.map((image) => (
+              <img
+                className={`w-full object-cover aspect-[3/4] mb-3 border rounded hover:shadow-md hover:border-slate-800 cursor-pointer
+                ${image === product.thumbnail && ' border-slate-800'}
+                `}
+                key={image}
+                src={image}
+                onMouseEnter={() => setProduct({ ...product, thumbnail: image })}
+              />
+            ))}
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-4 px-4 py-2">
-        <div className="text-xl font-medium md:text-3xl font-medium md:font-normal">
+        <div className="text-xl font-medium md:text-3xl md:font-normal">
           {product?.title}
         </div>
         <div className="flex justify-between">
